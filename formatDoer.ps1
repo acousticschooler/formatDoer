@@ -215,99 +215,105 @@ Write-Host Done
 
 
 Write-Host Downloading FireFox 52.0.2
-#Invoke-WebRequest -Uri https://download-installer.cdn.mozilla.net/pub/firefox/releases/52.0.2/win64/en-US/Firefox%20Setup%2052.0.2.exe -Outfile '~\Downloads\Firefox Setup 52.0.2.exe'
+Invoke-WebRequest -Uri https://download-installer.cdn.mozilla.net/pub/firefox/releases/52.0.2/win64/en-US/Firefox%20Setup%2052.0.2.exe -Outfile '~\Downloads\Firefox Setup 52.0.2.exe'
 Write-Host Finished downloading Firefox from the intraweberinos and now were going to install it
-#Start-Process -FilePath '~\Downloads\Firefox Setup 52.0.2.exe' -ArgumentList '/silent', '/install' -Wait
+Start-Process -FilePath '~\Downloads\Firefox Setup 52.0.2.exe' -ArgumentList '/silent', '/install' -Wait
 Write-Host Done
 
 Write-Host Downloading Chrome
-#Invoke-WebRequest -Uri https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7BE3116110-60AC-D0AE-44E9-5F352303192D%7D%26lang%3Den%26browser%3D4%26usagestats%3D0%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe -Outfile '~\Downloads\ChromeSetup.exe'
+Invoke-WebRequest -Uri https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7BE3116110-60AC-D0AE-44E9-5F352303192D%7D%26lang%3Den%26browser%3D4%26usagestats%3D0%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe -Outfile '~\Downloads\ChromeSetup.exe'
 Write-Host Finished downloading Chrome from the intraweberinos and now were going to install it
-#Start-Process -FilePath '~\Downloads\ChromeSetup.exe' -ArgumentList '/silent', '/install' -Wait
+Start-Process -FilePath '~\Downloads\ChromeSetup.exe' -ArgumentList '/silent', '/install' -Wait
 Write-Host Done
 
 Write-Host Downloading Python
-#Invoke-WebRequest -Uri https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi -Outfile '~\Downloads\python-2.7.13.msi'
+Invoke-WebRequest -Uri https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi -Outfile '~\Downloads\python-2.7.13.msi'
 Write-Host Finished downloading Python 2.7.13 from the intraweberinos and now were going to install it
-#Start-Process '~\Downloads\python-2.7.13.msi' /quiet -Wait
+Start-Process '~\Downloads\python-2.7.13.msi' /quiet -Wait
 Write-Host Done
 
 Write-Host Downloading Teamspeak 3
-#Invoke-WebRequest -Uri http://dl.4players.de/ts/releases/3.1.3/TeamSpeak3-Client-win64-3.1.3.exe -Outfile '~\Downloads\TeamSpeak3-Client-win64-3.1.3.exe'
+Invoke-WebRequest -Uri http://dl.4players.de/ts/releases/3.1.3/TeamSpeak3-Client-win64-3.1.3.exe -Outfile '~\Downloads\TeamSpeak3-Client-win64-3.1.3.exe'
 Write-Host Finished downloading Teamspeak 3 from the intraweberinos and now were going to install it
-#Start-Process -FilePath '~\Downloads\TeamSpeak3-Client-win64-3.1.3.exe' -ArgumentList '/S', '/install' -Wait
+Start-Process -FilePath '~\Downloads\TeamSpeak3-Client-win64-3.1.3.exe' -ArgumentList '/S', '/install' -Wait
 Write-Host Done
 
 Write-Host Downloading Corsair Utility Engine
-#Invoke-WebRequest -Uri http://downloads.corsair.com/download?item=Files/CUE/CorsairUtilityEngineSetup_2.11.115_release.msi -Outfile '~\Downloads\CorsairUtilityEngineSetup_2.11.115_release.msi'
+Invoke-WebRequest -Uri http://downloads.corsair.com/download?item=Files/CUE/CorsairUtilityEngineSetup_2.11.115_release.msi -Outfile '~\Downloads\CorsairUtilityEngineSetup_2.11.115_release.msi'
 Write-Host Finished downloading Corsair Utility Engine from the intraweberinos and now were going to install it
-#Start-Process -FilePath '~\Downloads\CorsairUtilityEngineSetup_2.11.115_release.msi' /quiet -Wait
+Start-Process -FilePath '~\Downloads\CorsairUtilityEngineSetup_2.11.115_release.msi' /quiet -Wait
 Write-Host Done
 
 Write-Host Downloading Steam
-#Invoke-WebRequest -Uri https://steamcdn-a.akamaihd.net/client/installer/SteamSetup.exe -Outfile '~\Downloads\SteamSetup.exe'
+Invoke-WebRequest -Uri https://steamcdn-a.akamaihd.net/client/installer/SteamSetup.exe -Outfile '~\Downloads\SteamSetup.exe'
 Write-Host Finished downloading Steam from the intraweberinos and now were going to install it
-#Start-Process -FilePath '~\Downloads\SteamSetup.exe' -ArgumentList '/S', '/install' -Wait
+Start-Process -FilePath '~\Downloads\SteamSetup.exe' -ArgumentList '/S', '/install' -Wait
 Write-Host Done
 
 Write-Host Downloading MalwareBytes
-#Invoke-WebRequest -Uri https://downloads.malwarebytes.com/file/mb3/ -Outfile '~\Downloads\mb3-setup-consumer-3.0.6.1469-1096.exe'
+Invoke-WebRequest -Uri https://downloads.malwarebytes.com/file/mb3/ -Outfile '~\Downloads\mb3-setup-consumer-3.0.6.1469-1096.exe'
 Write-Host Finished downloading MalwareBytes from the intraweberinos and now were going to install it
-#Start-Process -FilePath '~\Downloads\mb3-setup-consumer-3.0.6.1469-1096.exe' -ArgumentList '/silent', '/install' -Wait
+Start-Process -FilePath '~\Downloads\mb3-setup-consumer-3.0.6.1469-1096.exe' -ArgumentList '/silent', '/install' -Wait
 Write-Host Done
 
 Write-Host Downloading Samsung Magician
-#Invoke-WebRequest -Uri http://www.samsung.com/semiconductor/minisite/ssd/downloads/software/Samsung_Magician_Installer.zip -Outfile '~\Downloads\Samsung_Magician_Installer.zip'
+Invoke-WebRequest -Uri http://www.samsung.com/semiconductor/minisite/ssd/downloads/software/Samsung_Magician_Installer.zip -Outfile '~\Downloads\Samsung_Magician_Installer.zip'
 Write-Host Finished downloading Samsung Magician from the intraweberinos and now were going to extract it
-#Expand-Archive ~\Downloads\Samsung_Magician_Installer.zip -DestinationPath ~\Downloads\Samsung_Magician_Installer -Force
+Expand-Archive ~\Downloads\Samsung_Magician_Installer.zip -DestinationPath ~\Downloads\Samsung_Magician_Installer -Force
 Write-Host Finished extracting Samsung Magician, now lets install it
-#Start-Process -FilePath '~\Downloads\Samsung_Magician_Installer\Samsung_Magician_Installer.exe' -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-' -Wait
+Start-Process -FilePath '~\Downloads\Samsung_Magician_Installer\Samsung_Magician_Installer.exe' -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-' -Wait
 Write-Host Done
 
 Write-Host Downloading Nvidia Drivers
-#Invoke-WebRequest -Uri http://us.download.nvidia.com/Windows/381.65/381.65-desktop-win10-64bit-international-whql.exe -Outfile '~\Downloads\381.65-desktop-win10-64bit-international-whql.exe'
+Invoke-WebRequest -Uri http://us.download.nvidia.com/Windows/381.65/381.65-desktop-win10-64bit-international-whql.exe -Outfile '~\Downloads\381.65-desktop-win10-64bit-international-whql.exe'
 Write-Host Finished downloading Nvidia Drivers from the intraweberinos and now were going to extract it
-#Expand-Archive ~\Downloads\381.65-desktop-win10-64bit-international-whql.exe -DestinationPath C:\NVIDIA\DisplayDriver\381.65\Win10_64\International\setup.exe -Force
+Expand-Archive ~\Downloads\381.65-desktop-win10-64bit-international-whql.exe -DestinationPath C:\NVIDIA\DisplayDriver\381.65\Win10_64\International\setup.exe -Force
 Write-Host Finished extracting Nvidia Drivers, now lets install it
-#Start-Process -FilePath 'C:\NVIDIA\DisplayDriver\381.65\Win10_64\International\setup.exe' -ArgumentList '-s', '-noeula', '-noreboot' -Wait
+Start-Process -FilePath 'C:\NVIDIA\DisplayDriver\381.65\Win10_64\International\setup.exe' -ArgumentList '-s', '-noeula', '-noreboot' -Wait
 Write-Host Done
 
 Write-Host Downloading AHK
-#Invoke-WebRequest -Uri https://autohotkey.com/download/ahk-install.exe -Outfile '~\Downloads\AutoHotkey_1.1.25.01_setup.exe'
+Invoke-WebRequest -Uri https://autohotkey.com/download/ahk-install.exe -Outfile '~\Downloads\AutoHotkey_1.1.25.01_setup.exe'
 Write-Host Finished downloading AHK from the intraweberinos and now were going to extract it
-#Start-Process -FilePath '~\Downloads\AutoHotkey_1.1.25.01_setup.exe' -ArgumentList '/S' -Wait
+Start-Process -FilePath '~\Downloads\AutoHotkey_1.1.25.01_setup.exe' -ArgumentList '/S' -Wait
 Write-Host Done
 
 Write-Host Downloading VLC
-#Invoke-WebRequest -Uri http://videolan.mirrors.hivelocity.net/vlc/2.2.4/win32/vlc-2.2.4-win32.exe -Outfile '~\Downloads\vlc-2.2.4-win32.exe'
+Invoke-WebRequest -Uri http://videolan.mirrors.hivelocity.net/vlc/2.2.4/win32/vlc-2.2.4-win32.exe -Outfile '~\Downloads\vlc-2.2.4-win32.exe'
 Write-Host Finished downloading VLC from the intraweberinos and now were going to extract it
-#Start-Process -FilePath '~\Downloads\vlc-2.2.4-win32.exe' -ArgumentList '/S' -Wait
+Start-Process -FilePath '~\Downloads\vlc-2.2.4-win32.exe' -ArgumentList '/S' -Wait
 Write-Host Done
 
 Write-Host Downloading Irfanview64
-#Invoke-WebRequest -Uri 'http://dw.cbsi.com/redir?ttag=restart_download_click&ptid=3001&pagetype=product_pdl&astid=2&edid=3&tag=link&siteid=4&destUrl=&onid=2192&oid=3001-2192_4-76444710&rsid=cbsidownloadcomsite&sl=en&sc=us&topicguid=digitalphoto%2Fphoto-editors&topicbrcrm=&pid=15672085&mfgid=59333&merid=59333&ctype=dm&cval=NONE&devicetype=%3C!--esidesktop&pguid=091def71a8cc0c7dd8a7625d&viewguid=jwIFZaQOWgLBs-SHRLJmQvOIWJiHCkXA-uBq&destUrl=http%3A%2F%2Ffiles.downloadnow.com%2Fs%2Fsoftware%2F15%2F67%2F20%2F85%2Fiview444_x64_setup.exe%3Ftoken%3D1492167761_7d498fdc78c780932212c6f6c23c2284%26fileName%3Diview444_x64_setup.exe' -Outfile '~\Downloads\irfanview64.exe'
+Invoke-WebRequest -Uri 'http://dw.cbsi.com/redir?ttag=restart_download_click&ptid=3001&pagetype=product_pdl&astid=2&edid=3&tag=link&siteid=4&destUrl=&onid=2192&oid=3001-2192_4-76444710&rsid=cbsidownloadcomsite&sl=en&sc=us&topicguid=digitalphoto%2Fphoto-editors&topicbrcrm=&pid=15672085&mfgid=59333&merid=59333&ctype=dm&cval=NONE&devicetype=%3C!--esidesktop&pguid=091def71a8cc0c7dd8a7625d&viewguid=jwIFZaQOWgLBs-SHRLJmQvOIWJiHCkXA-uBq&destUrl=http%3A%2F%2Ffiles.downloadnow.com%2Fs%2Fsoftware%2F15%2F67%2F20%2F85%2Fiview444_x64_setup.exe%3Ftoken%3D1492167761_7d498fdc78c780932212c6f6c23c2284%26fileName%3Diview444_x64_setup.exe' -Outfile '~\Downloads\irfanview64.exe'
 Write-Host Finished downloading Irfanview64 from the intraweberinos and now were going to extract it
-#Start-Process -FilePath '~\Downloads\irfanview64.exe' -ArgumentList '/silent' -Wait
+Start-Process -FilePath '~\Downloads\irfanview64.exe' -ArgumentList '/silent' -Wait
 Write-Host Done
 
 Write-Host Downloading Razer Synapse
-#Invoke-WebRequest -Uri http://rzr.to/synapse-pc-download -Outfile '~\Downloads\Razer_Synapse_Framework_V2.exe'
-Write-Host Finished downloading Razer Synapse, now were going to run the AHK script to finish up.
-#Start-Process -FilePath '~\Downloads\RazerSynInstall.ahk'
+Invoke-WebRequest -Uri http://rzr.to/synapse-pc-download -Outfile '~\Downloads\Razer_Synapse_Framework_V2.exe'
+Write-Host Downloading AHK script to install Synapse
+(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/acousticschooler/formatDoer/master/RazerSynInstall.ahk?token=AFugwwS5anYsS4P_VwRj_nqjoQRryZVRks5Y-V8JwA%3D%3D') | out-file ~\Downloads\RazerSynInstall.ahk -force 
+Write-Host Finished downloading Razer Synapse and script, now were going to run the AHK script to finish up.
+Start-Process -FilePath '~\Downloads\RazerSynInstall.ahk'
 Write-Host Ran the script so now PowerShell is going to trigger the install
-#Start-Process -FilePath '~\Downloads\Razer_Synapse_Framework_V2.exe' -Wait
+Start-Process -FilePath '~\Downloads\Razer_Synapse_Framework_V2.exe' -Wait
 Write-Host Done
 
 Write-Host Downloading Blizzard App
-#Invoke-WebRequest -Uri 'https://www.battle.net/download/getInstallerForGame?os=win&locale=enUS&version=LIVE&gameProgram=BATTLENET_APP' -Outfile '~\Downloads\Battle.net-Setup.exe'
-Write-Host Finished downloading Blizzard App, now were going to run the AHK script to finsih up.
-#Start-Process -FilePath '~\Downloads\blizzardAppInstaller.ahk'
+Invoke-WebRequest -Uri 'https://www.battle.net/download/getInstallerForGame?os=win&locale=enUS&version=LIVE&gameProgram=BATTLENET_APP' -Outfile '~\Downloads\Battle.net-Setup.exe'
+Write-Host Downloading AHK script to install Blizzard App
+(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/acousticschooler/formatDoer/master/blizzardAppInstaller.ahk?token=AFugwyPxP82bHx-9RslNiLypz83xcUEDks5Y-V_jwA%3D%3D') | out-file ~\Downloads\blizzardAppInstaller.ahk -force
+Write-Host Finished downloading Blizzard App and the script, now were going to run the AHK script to finish up.
+Start-Process -FilePath '~\Downloads\blizzardAppInstaller.ahk'
 Write-Host Ran the script so now PowerShell is going to trigger the install
-#Start-Process -FilePath '~\Downloads\Battle.net-Setup.exe' -Wait
+Start-Process -FilePath '~\Downloads\Battle.net-Setup.exe' -Wait
 Write-Host Done
 
+Write-Host Downloading AHK script to change the defaults
+(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/acousticschooler/formatDoer/master/defaults.ahk?token=AFugw0awcfSnXtS6-KcUvjEnIYXIfcNJks5Y-WA2wA%3D%3D') | out-file ~\Downloads\defaults.ahk -force
 Write-Host Running the AHK script to change the defaults to my preferences
-Start-Process -FilePath '~\Downloads\Defaults.ahk' -Wait
+Start-Process -FilePath '~\Downloads\defaults.ahk' -Wait
 Write-Host Done
 
 Write-Host Setting Pythons paths permanantly so when powershell closes itll be permanant
