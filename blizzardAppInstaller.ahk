@@ -1,4 +1,4 @@
-;~ This script runs after Razer Synapse has been downloaded and then installs it.
+;~ This script runs after Blizzard App has been downloaded and then installs it.
 #NoEnv
 #SingleInstance, Force
 SetTitleMatchMode, 2
