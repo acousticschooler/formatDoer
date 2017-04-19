@@ -34,3 +34,4 @@ else
 	WinWait, NVIDIA Installer
 Sleep 300
 Process,Close,setup.exe
+ExitApp

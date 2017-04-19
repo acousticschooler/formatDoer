@@ -39,3 +39,4 @@ if OutputVar = 1
 	ControlClick, Button3
 	Sleep 100
 	ControlClick, &Finish
+ExitApp

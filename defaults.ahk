@@ -55,3 +55,4 @@ PixelSearch, Px, Py, 0, 0, 500, 352, 0xDA5225, 0, Fast RGB ; oxoooo4c is the pix
 Click, %Px%, %Py%
 Sleep, 2000
 WinClose, Settings
+ExitApp
