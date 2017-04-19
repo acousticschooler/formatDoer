@@ -6,53 +6,98 @@ SendMode, Input
 DetectHiddenText, On
 DetectHiddenWindows, On
 SetWorkingDir %A_ScriptDir%
+activateSettings(){
+IfWinExist, Settings
+	WinActivate, Settings
+else
+	WinWait, Settings
+}
 
-Send {LWin}
-Sleep 1000
-WinWaitActive, Cortana
-Sleep 100
-Send, apps: defau
-Sleep 100
-WinWaitActive, Cortana
-Sleep, 100
-Loop{
-PixelGetColor, color, 77, 124, RGB
-if color = 0x0078D7
-{
-	Click, 77, 124
-	break
-}else{
-	Sleep, 100
+openSettings(){
+	ControlClick,  Start1, ahk_class Shell_TrayWnd
+	Sleep 200
+	MouseMove, 20, 565
+	Sleep 200
+	Click
+	Sleep 200
+	activateSettings()
+	WinMove, Settings,, -7, 0, 500, 352
 }
+
+goToDefaultApps(){
+	activateSettings()
+	while !WinExist("Settings"){
+		openSettings()
+	}
+	Send {Tab}
+	Sleep 200
+	Send {Down}
+	Sleep 200
+	Send {Down}
+	Sleep 200
+	Send {Down}
+	Sleep 200
+	Send {Down}
+	Sleep 200
+	Send {Enter}
+	activateSettings()
+	ControlGet, OutputVar, Visible, , ApplicationFrameTitleBarWindow2, Settings
+	if (OutputVar != 1){
+		WinClose, Settings
+		goToDefaultApps()
+	}
+	Sleep 200
+	Send {Tab}
+	Sleep 200
+	Send {Down}
+	Sleep 200
+	Send {Enter}
 }
-WinWait, Settings
-Sleep, 1000
-WinActivate, Settings
-WinMove, Settings,,-8,0,500,352
-Send {Tab}
-Sleep, 100
-Send  {Tab}
-Sleep, 100
-Send  {Tab}
-Sleep, 100
-Send  {Enter}
-Sleep, 3000
-PixelSearch, Px, Py, 0, 0, 500, 352, 0xA50A03, 0, Fast RGB ; oxoooo4c is the pixel color fould from using the first script, insert yours there
-Click, %Px%, %Py%
-Sleep, 2000
-Send  {Tab}
-Sleep, 100
-Send {Enter}
-Sleep, 3000
-PixelSearch, Px, Py, 0, 0, 500, 352, 0xCACFD2, 0, Fast RGB ; oxoooo4c is the pixel color fould from using the first script, insert yours there
-Click, %Px%, %Py%
-Sleep, 2000
-Send  {Tab}
-Sleep, 100
-Send {Enter}
-Sleep, 3000
-PixelSearch, Px, Py, 0, 0, 500, 352, 0xDA5225, 0, Fast RGB ; oxoooo4c is the pixel color fould from using the first script, insert yours there
-Click, %Px%, %Py%
-Sleep, 2000
-WinClose, Settings
+
+checkIfAtAppDefault(){
+activateSettings()
+PixelGetColor, color, 197, 77, RGB
+if(color = 0xDDDDDD){
+		setDefaultApps()
+	}else{
+		WinClose, Settings
+		goToDefaultApps()
+	}
+}
+setDefaultMusic(){
+	Send {Tab}
+	Sleep 200
+	Send {Tab}
+	Sleep 200
+	Send {Tab}
+	Sleep 200
+	Send {Enter}
+	Sleep 200
+	Loop{
+	PixelSearch, x, y, 0, 0, 500, 500, 0xFFECBD, 3, Fast RGB
+	if (ErrorLevel = 1){
+			Send {Enter}
+			Sleep 200
+			Send {Enter}
+			Sleep 200
+		}else{
+			Sleep 300
+			Send {Enter}
+			Sleep 200
+			MouseMove, %x%, %y%
+			Click
+			break
+		}
+	}
+}
+setDefaultApps(){
+	setDefaultMusic()
+}
+ 
+openSettings()
+goToDefaultApps()
+setDefaultApps()
+ExitApp
+
+Escape::
 ExitApp
