@@ -3,6 +3,15 @@ Write-Host Disabling UAC
 Set-ItemProperty -Path $uacPath -Name "EnableLUA" -Value 0
 Write-Host Done
 
+Write-Host Downloading AHK script to change the defaults
+(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/acousticschooler/formatDoer/master/defaults.ahk') | out-file ~\Downloads\defaults.ahk -force
+
+Write-Host Downloading AHK script to install Synapse
+(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/acousticschooler/formatDoer/master/RazerSynInstall.ahk') | out-file ~\Downloads\RazerSynInstall.ahk -force 
+
+Write-Host Downloading AHK script to install Blizzard App
+(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/acousticschooler/formatDoer/master/blizzardAppInstaller.ahk') | out-file ~\Downloads\blizzardAppInstaller.ahk -force
+
 Write-Host Downloading Set-Privacy script and running it on "balanced" mode
 (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/hahndorf/Set-Privacy/master/Set-Privacy.ps1') | out-file ~\Downloads\Set-Privacy.ps1 -force 
 ~\Downloads\Set-Privacy.ps1 -Balanced
@@ -273,8 +282,10 @@ Write-Host Done
 
 Write-Host Downloading Nvidia Drivers
 Invoke-WebRequest -Uri http://us.download.nvidia.com/Windows/381.65/381.65-desktop-win10-64bit-international-whql.exe -Outfile '~\Downloads\381.65-desktop-win10-64bit-international-whql.exe'
-Write-Host Finished downloading Nvidia Drivers from the intraweberinos and now were going to extract it
-Expand-Archive ~\Downloads\381.65-desktop-win10-64bit-international-whql.exe -DestinationPath C:\NVIDIA\DisplayDriver\381.65\Win10_64\International -Force
+Write-Host Finished downloading Nvidia Drivers from the intraweberinos and now were going to run the AHK script to extract it
+Start-Process -FilePath ~\Downloads\nvidiaExtract.ahk -Wait
+Write-Host Ran AHK now lets extract
+Start-Process -FilePath ~\Downloads\381.65-desktop-win10-64bit-international-whql.exe -Wait
 Write-Host Finished extracting Nvidia Drivers, now lets install it
 Start-Process -FilePath 'C:\NVIDIA\DisplayDriver\381.65\Win10_64\International\setup.exe' -ArgumentList '-s', '-noeula', '-noreboot' -Wait
 Write-Host Done
@@ -292,9 +303,7 @@ Start-Process -FilePath '~\Downloads\irfanview64.exe' -ArgumentList '/silent' -W
 Write-Host Done
 
 Write-Host Downloading Razer Synapse
-Invoke-WebRequest -Uri http://rzr.to/synapse-pc-download -Outfile '~\Downloads\Razer_Synapse_Framework_V2.exe'
-Write-Host Downloading AHK script to install Synapse
-(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/acousticschooler/formatDoer/master/RazerSynInstall.ahk?token=AFugwwS5anYsS4P_VwRj_nqjoQRryZVRks5Y-V8JwA%3D%3D') | out-file ~\Downloads\RazerSynInstall.ahk -force 
+Invoke-WebRequest -Uri http://rzr.to/synapse-pc-download -Outfile '~\Downloads\Razer_Synapse_Framework_V2.20.15.1104.exe'
 Write-Host Finished downloading Razer Synapse and script, now were going to run the AHK script to finish up.
 Start-Process -FilePath '~\Downloads\RazerSynInstall.ahk'
 Write-Host Ran the script so now PowerShell is going to trigger the install
@@ -303,16 +312,12 @@ Write-Host Done
 
 Write-Host Downloading Blizzard App
 Invoke-WebRequest -Uri 'https://www.battle.net/download/getInstallerForGame?os=win&locale=enUS&version=LIVE&gameProgram=BATTLENET_APP' -Outfile '~\Downloads\Battle.net-Setup.exe'
-Write-Host Downloading AHK script to install Blizzard App
-(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/acousticschooler/formatDoer/master/blizzardAppInstaller.ahk?token=AFugwyPxP82bHx-9RslNiLypz83xcUEDks5Y-V_jwA%3D%3D') | out-file ~\Downloads\blizzardAppInstaller.ahk -force
 Write-Host Finished downloading Blizzard App and the script, now were going to run the AHK script to finish up.
 Start-Process -FilePath '~\Downloads\blizzardAppInstaller.ahk'
 Write-Host Ran the script so now PowerShell is going to trigger the install
 Start-Process -FilePath '~\Downloads\Battle.net-Setup.exe' -Wait
 Write-Host Done
 
-Write-Host Downloading AHK script to change the defaults
-(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/acousticschooler/formatDoer/master/defaults.ahk?token=AFugw0awcfSnXtS6-KcUvjEnIYXIfcNJks5Y-WA2wA%3D%3D') | out-file ~\Downloads\defaults.ahk -force
 Write-Host Running the AHK script to change the defaults to my preferences
 Start-Process -FilePath '~\Downloads\defaults.ahk' -Wait
 Write-Host Done
@@ -321,9 +326,9 @@ Write-Host Setting Pythons paths permanantly so when powershell closes itll be p
 [Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Python27\;C:\Python27\Scripts\", "User")
 Write-Host Setting paths for this session now
 $env:path="$env:Path;C:\Python27"
-Write-Host Done 1
+Write-Host Done with C path
 $env:path="$env:Path;C:\Python27\Scripts"
-Write-Host Done2
+Write-Host Done with script path
 Write-Host Changing to python dir
 cd C:\Python27
 Write-Host Downloading dependencies
