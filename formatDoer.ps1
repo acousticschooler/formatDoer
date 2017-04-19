@@ -348,18 +348,15 @@ Write-Host Done
 Write-Host Setting Pythons paths permanantly so when powershell closes itll be permanant
 [Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Python27\;C:\Python27\Scripts\", "User")
 Write-Host Setting paths for this session now
-$env:path="$env:Path;C:\Python27"
+$env:Path += ";C:\Python27"
 Write-Host Done with C path
-$env:path="$env:Path;C:\Python27\Scripts"
+$env:Path += ";C:\Python27\Scripts"
 Write-Host Done with script path
 Write-Host Changing to python dir
 cd C:\Python27
 Write-Host Downloading dependencies
 Write-Host Downloading praw
 pip install praw
-Write-Host done
-Write-Host Downloading prawcore
-pip install prawcore
 Write-Host done
 Write-Host Downloading colorama
 pip install colorama
