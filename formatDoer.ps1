@@ -330,7 +330,7 @@ Invoke-WebRequest -Uri http://rzr.to/synapse-pc-download -Outfile '~\Downloads\R
 Write-Host Finished downloading Razer Synapse and script, now were going to run the AHK script to finish up.
 Start-Process -FilePath '~\Downloads\RazerSynInstall.ahk'
 Write-Host Ran the script so now PowerShell is going to trigger the install
-Start-Process -FilePath '~\Downloads\Razer_Synapse_Framework_V2.exe' -Wait
+Start-Process -FilePath '~\Downloads\Razer_Synapse_Framework_V2.20.15.1104.exe' -Wait
 Write-Host Done
 
 Write-Host Downloading Blizzard App
