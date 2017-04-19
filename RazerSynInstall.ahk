@@ -6,52 +6,36 @@ SendMode, Input
 DetectHiddenText, On
 DetectHiddenWindows, On
 SetWorkingDir %A_ScriptDir%
-
-PixelGetColor, color, 300, 362
-While !(color = "0xCCCCCC")
-PixelGetColor, color, 300, 362
-
+activateRazer(){
 IfWinExist, Razer Synapse - InstallShield Wizard
 	WinActivate, Razer Synapse - InstallShield Wizard
 else
 	WinWait, Razer Synapse - InstallShield Wizard
-
-WinWaitActive, Razer Synapse - InstallShield Wizard
-ControlClick, Button1
-Sleep, 300
-
-IfWinExist, Razer Synapse - InstallShield Wizard
-	WinActivate, Razer Synapse - InstallShield Wizard
-else
-	WinWait, Razer Synapse - InstallShield Wizard
-
-WinWaitActive, Razer Synapse - InstallShield Wizard
-ControlClick, Button3
-Sleep, 300
-ControlClick, Button5
-Sleep, 300
-
-IfWinExist, Razer Synapse - InstallShield Wizard
-	WinActivate, Razer Synapse - InstallShield Wizard
-else
-	WinWait, Razer Synapse - InstallShield Wizard
-
-WinWaitActive, Razer Synapse - InstallShield Wizard
-ControlClick, Button1
-Sleep, 100
-
-PixelGetColor, color, 475, 360
-While !(color = "0xCCCCCC")
-PixelGetColor, color, 475, 360
-
-IfWinExist, Razer Synapse - InstallShield Wizard
-	WinActivate, Razer Synapse - InstallShield Wizard
-else
-	WinWait, Razer Synapse - InstallShield Wizard
-
-WinWaitActive, Razer Synapse - InstallShield Wizard
-Sleep, 100
-ControlClick, Button3
-Sleep, 100
-ControlClick, Button1
-ExitApp
+}
+activateRazer()
+Loop{
+	ControlGet, OutputVar, Visible, , Preparing to Install..., Razer Synapse - InstallShield Wizard
+	Sleep 600
+}until OutputVar != 1
+activateRazer()
+Sleep 600
+ControlGet, OutputVar, Visible, , &Next >, Razer Synapse - InstallShield Wizard
+if OutputVar = 1
+	ControlClick, &Next >
+Sleep 600
+activateRazer()
+ControlGet, OutputVar, Visible, , I &accept the terms in the license agreement, Razer Synapse - InstallShield Wizard
+if OutputVar = 1
+	ControlClick, I &accept the terms in the license agreement
+	Sleep 600
+	ControlClick, &Next >
+activateRazer()
+ControlGet, OutputVar, Visible, , &Install, Razer Synapse - InstallShield Wizard
+if OutputVar = 1
+	ControlClick, Button1
+activateRazer()
+ControlGet, OutputVar, Checked, , Button3, Razer Synapse - InstallShield Wizard
+if OutputVar = 1
+	ControlClick, Button3
+	Sleep 100
+	ControlClick, &Finish

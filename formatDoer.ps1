@@ -1,8 +1,4 @@
-﻿Write-Host Setting the execution policy
-Set-ExecutionPolicy RemoteSigned
-Write-Host Done
-
-$uacPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"
+﻿$uacPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"
 Write-Host Disabling UAC
 Set-ItemProperty -Path $uacPath -Name "EnableLUA" -Value 0
 Write-Host Done
@@ -213,6 +209,23 @@ Write-Host Done, lets do the mouse threshold 2
 Set-ItemProperty -Path $generalMouse -Name MouseThreshold2 -value 0
 Write-Host Done
 
+Write-Host Downloading AHK
+Invoke-WebRequest -Uri https://autohotkey.com/download/ahk-install.exe -Outfile '~\Downloads\AutoHotkey_1.1.25.01_setup.exe'
+Write-Host Finished downloading AHK from the intraweberinos and now were going to extract it
+Start-Process -FilePath '~\Downloads\AutoHotkey_1.1.25.01_setup.exe' -ArgumentList '/S' -Wait
+Write-Host Done
+
+Write-Host Downloading WinRar
+Invoke-WebRequest -Uri http://www.rarlab.com/rar/winrar-x64-540.exe -Outfile '~\Downloads\winrar-x64-540.exe'
+Write-Host Finished extracting WinRar, now lets install it
+Start-Process -FilePath '~\Downloads\winrar-x64-540.exe' -ArgumentList '/S' -Wait
+Write-Host Done
+
+Write-Host Downloading Python
+Invoke-WebRequest -Uri https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi -Outfile '~\Downloads\python-2.7.13.msi'
+Write-Host Finished downloading Python 2.7.13 from the intraweberinos and now were going to install it
+Start-Process '~\Downloads\python-2.7.13.msi' /quiet -Wait
+Write-Host Done
 
 Write-Host Downloading FireFox 52.0.2
 Invoke-WebRequest -Uri https://download-installer.cdn.mozilla.net/pub/firefox/releases/52.0.2/win64/en-US/Firefox%20Setup%2052.0.2.exe -Outfile '~\Downloads\Firefox Setup 52.0.2.exe'
@@ -224,12 +237,6 @@ Write-Host Downloading Chrome
 Invoke-WebRequest -Uri https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7BE3116110-60AC-D0AE-44E9-5F352303192D%7D%26lang%3Den%26browser%3D4%26usagestats%3D0%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe -Outfile '~\Downloads\ChromeSetup.exe'
 Write-Host Finished downloading Chrome from the intraweberinos and now were going to install it
 Start-Process -FilePath '~\Downloads\ChromeSetup.exe' -ArgumentList '/silent', '/install' -Wait
-Write-Host Done
-
-Write-Host Downloading Python
-Invoke-WebRequest -Uri https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi -Outfile '~\Downloads\python-2.7.13.msi'
-Write-Host Finished downloading Python 2.7.13 from the intraweberinos and now were going to install it
-Start-Process '~\Downloads\python-2.7.13.msi' /quiet -Wait
 Write-Host Done
 
 Write-Host Downloading Teamspeak 3
@@ -267,15 +274,9 @@ Write-Host Done
 Write-Host Downloading Nvidia Drivers
 Invoke-WebRequest -Uri http://us.download.nvidia.com/Windows/381.65/381.65-desktop-win10-64bit-international-whql.exe -Outfile '~\Downloads\381.65-desktop-win10-64bit-international-whql.exe'
 Write-Host Finished downloading Nvidia Drivers from the intraweberinos and now were going to extract it
-Expand-Archive ~\Downloads\381.65-desktop-win10-64bit-international-whql.exe -DestinationPath C:\NVIDIA\DisplayDriver\381.65\Win10_64\International\setup.exe -Force
+Expand-Archive ~\Downloads\381.65-desktop-win10-64bit-international-whql.exe -DestinationPath C:\NVIDIA\DisplayDriver\381.65\Win10_64\International -Force
 Write-Host Finished extracting Nvidia Drivers, now lets install it
 Start-Process -FilePath 'C:\NVIDIA\DisplayDriver\381.65\Win10_64\International\setup.exe' -ArgumentList '-s', '-noeula', '-noreboot' -Wait
-Write-Host Done
-
-Write-Host Downloading AHK
-Invoke-WebRequest -Uri https://autohotkey.com/download/ahk-install.exe -Outfile '~\Downloads\AutoHotkey_1.1.25.01_setup.exe'
-Write-Host Finished downloading AHK from the intraweberinos and now were going to extract it
-Start-Process -FilePath '~\Downloads\AutoHotkey_1.1.25.01_setup.exe' -ArgumentList '/S' -Wait
 Write-Host Done
 
 Write-Host Downloading VLC

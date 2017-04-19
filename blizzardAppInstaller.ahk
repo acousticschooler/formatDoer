@@ -7,6 +7,24 @@ DetectHiddenText, On
 DetectHiddenWindows, On
 SetWorkingDir %A_ScriptDir%
 
+IfWinExist, ahk_exe Battle.net-Setup.exe
+	WinActivate, ahk_exe Battle.net-Setup.exe
+else
+	WinWait, ahk_exe Battle.net-Setup.exe
+
+WinWaitActive, ahk_exe Battle.net-Setup.exe
+Loop{
+	Sleep, 100
+	PixelGetColor, color, 289, 84, RGB
+	if color = 0x593D4
+	{
+		ControlClick, x128 y291, ahk_exe Battle.net-Setup.exe
+		break
+	}else{
+		ControlClick, x289 y84, ahk_exe Battle.net-Setup.exe
+}
+}
+
 IfWinExist, Blizzard App Setup
 	WinActivate, Blizzard App Setup
 else
