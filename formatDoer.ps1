@@ -100,14 +100,31 @@ Write-Host Done
 
 Write-Host Setting power plan to HP and also changing powercfg options for performance
 powercfg /S 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+Write-Host Changing HDD spin down to 0
 powercfg /setdcvalueindex $hpPowerScheme $hdSubID $hdTurnOff 0
+Write-Host Done
+Write-Host Changing something about javascripttimerfreq
 powercfg /setdcvalueindex $hpPowerScheme $ieSubID $ieJavaScriptTimerFreq 1 
+Write-Host Done
+Write-Host Changing adapter power save mode to 0
 powercfg /setdcvalueindex $hpPowerScheme $wirelessAdapterSubID $powerSaveMode 0
+Write-Host Done
+Write-Host Sleep after never
 powercfg /setdcvalueindex $hpPowerScheme $sleepSubID $sleepAfter 0
+Write-Host Done
+Write-Host Hibernate Never
 powercfg /setdcvalueindex $hpPowerScheme $sleepSubID $hibernateAfter 0
+Write-Host Done
+Write-Host Wake Timer Never
 powercfg /setdcvalueindex $hpPowerScheme $sleepSubID $allowWakeTimer 0
+Write-Host Done
+Write-Host USB suspend off
 powercfg /setdcvalueindex $hpPowerScheme $usbSubID $usbSelectiveSuspend 0
+Write-Host Done
+Write-Host PCI Power manager off
 powercfg /setdcvalueindex $hpPowerScheme $pciSubID $linkStatePowerManagement 0
+Write-Host Done
+Write-Host Turn display off never
 powercfg /setdcvalueindex $hpPowerScheme $displaySubID $turnOffDisplayAfter 0
 Write-Host Done
 
@@ -131,14 +148,20 @@ Write-Error "Error Pinning/Unpinning App! (App-Name correct?)"
 
 Pin-App "Mail" -unpin
 Pin-App "Store" -unpin
+Pin-App "Cortana" -unpin
 Pin-App "Calendar" -unpin
 Pin-App "Microsoft Edge" -unpin
 Pin-App "Photos" -unpin
 Pin-App "Cortana" -unpin
 Pin-App "Weather" -unpin
+Pin-App "Twitter" -unpin
+Pin-App "Store" -unpin
 Pin-App "Xbox" -unpin
-Pin-App "Movies & Tv" -unpin
+Pin-App "Groove Music" -unpin
+Pin-App "Money" -unpin
+Pin-App "Movies & TV" -unpin
 Pin-App "Microsoft Solitaire Collection" -unpin
+Pin-App "Minecraft: Windows 10 Edition" -unpin
 Pin-App "Get Office" -unpin
 Pin-App "Onenote" -unpin
 Pin-App "News" -unpin
