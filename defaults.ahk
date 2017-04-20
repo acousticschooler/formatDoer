@@ -133,7 +133,7 @@ setDefaultPhoto(){
 		Click WheelDown
 		Sleep 1000
 		activateSettingsClass()
-		PixelSearch, x, y, 18, 96, 57, 351, 0xA80B04, 1, Fast RGB
+		PixelSearch, x, y, 18, 96, 57, 350, 0xA80B04, 2, Fast RGB
 		if (ErrorLevel){
 			MouseGetPos, mX, mY,, 1
 			PixelGetColor, color, %mX%, %mY%, RGB
@@ -152,6 +152,7 @@ setDefaultPhoto(){
 	Sleep 300
 	Loop{
 		Sleep 1000
+		MouseMove, 100, 100
 		activateSettingsClass()
 		PixelSearch, x, y, 57, 33, 395, 229, 0xA80B04, 1, Fast RGB
 		if (ErrorLevel = 1){
@@ -196,6 +197,7 @@ setDefaultVideo(){
 	Sleep 300
 	Loop{
 		Sleep 1000
+		MouseMove, 100, 100
 		activateSettingsClass()
 		PixelSearch, x, y, 57, 33, 395, 229, 0xF88300, 1, Fast RGB
 		if (ErrorLevel = 1){
@@ -210,7 +212,7 @@ setDefaultVideo(){
 			MouseMove, %x%, %y%
 			Click
 			Sleep 300
-			MouseMove, 402, 334
+			MouseMove, 402, 336
 			Sleep 1000
 			break
 		}
@@ -220,7 +222,11 @@ setDefaultVideo(){
 setDefaultBrowser(){
 	Loop{
 		Click WheelDown
-		Sleep 1000
+		Sleep 325
+		Click WheelDown
+		Sleep 325
+		Click WheelDown
+		Sleep 325
 		activateSettingsClass()
 		PixelSearch, x, y, 18, 96, 57, 351, 0xDD4E42, 1, Fast RGB
 		if (ErrorLevel){
@@ -241,6 +247,7 @@ setDefaultBrowser(){
 	Sleep 300
 	Loop{
 		Sleep 1000
+		MouseMove, 100, 100
 		activateSettingsClass()
 		PixelSearch, x, y, 57, 33, 395, 229, 0xDD4E42, 1, Fast RGB
 		if (ErrorLevel = 1){
