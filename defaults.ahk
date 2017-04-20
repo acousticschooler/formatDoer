@@ -1,16 +1,31 @@
 ;~ Setting Defaults
 #NoEnv
 #SingleInstance, Force
+#Persistent
 SetTitleMatchMode, 2
 SendMode, Input
 DetectHiddenText, On
 DetectHiddenWindows, On
 SetWorkingDir %A_ScriptDir%
+
+if not A_IsAdmin
+{
+	Run *RunAs "%A_ScriptFullPath%"  ; Requires v1.0.92.01+
+	ExitApp
+}
+
 activateSettings(){
-IfWinExist, Settings
+	IfWinExist, Settings
 	WinActivate, Settings
-else
+	else
 	WinWait, Settings
+}
+
+activateSettingsClass(){
+	IfWinExist, ahk_class ApplicationFrameWindow
+	WinActivate, ahk_class ApplicationFrameWindow
+	else
+	WinWait, ahk_class ApplicationFrameWindow
 }
 
 openSettings(){
@@ -21,7 +36,9 @@ openSettings(){
 	Click
 	Sleep 200
 	activateSettings()
-	WinMove, Settings,, -7, 0, 500, 352
+	Sleep 200
+	WinMove, ahk_class ApplicationFrameWindow,, -7, 0, 500, 352
+	Sleep 1000
 }
 
 goToDefaultApps(){
@@ -41,10 +58,15 @@ goToDefaultApps(){
 	Sleep 200
 	Send {Enter}
 	activateSettings()
+	Sleep 1000
 	ControlGet, OutputVar, Visible, , ApplicationFrameTitleBarWindow2, Settings
-	if (OutputVar != 1){
-		WinClose, Settings
-		goToDefaultApps()
+	Loop{
+		if (OutputVar != 1){
+			Sleep 200
+
+		}else{
+			break
+		}
 	}
 	Sleep 200
 	Send {Tab}
@@ -55,49 +77,207 @@ goToDefaultApps(){
 }
 
 checkIfAtAppDefault(){
-activateSettings()
-PixelGetColor, color, 197, 77, RGB
-if(color = 0xDDDDDD){
+	activateSettings()
+	PixelGetColor, color, 197, 77, RGB
+	if(color = 0xDDDDDD){
 		setDefaultApps()
 	}else{
 		WinClose, Settings
 		goToDefaultApps()
 	}
+
 }
+
 setDefaultMusic(){
+	MouseMove, 100, 100
 	Send {Tab}
-	Sleep 200
+	Sleep 300
 	Send {Tab}
-	Sleep 200
+	Sleep 300
 	Send {Tab}
-	Sleep 200
-	Send {Enter}
-	Sleep 200
+	Sleep 1000
+	activateSettingsClass()
+	PixelSearch, x, y, 18, 96, 57, 351, 0xFEB61F, 1, Fast RGB
+	if(ErrorLevel){
+		Send {Enter}
+		Sleep 300
+		Loop{
+			Sleep 1000
+			activateSettingsClass()
+			PixelSearch, x, y, 57, 33, 395, 229, 0xFEB61F, 1, Fast RGB
+			if (ErrorLevel = 1){
+				activateSettings()
+				Click WheelDown
+				Sleep 1000 ;FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCK THIS SLEEP FUCK
+			}else{
+				Sleep 300
+				Send {Enter}
+				Sleep 300
+				MouseMove, %x%, %y%
+				Click
+				Sleep 300
+				MouseMove, 402, 334
+				Sleep 1000
+				break
+			}
+		}
+	}else{
+		MouseMove, 402, 334
+		return
+		return
+	}
+}
+
+setDefaultPhoto(){
 	Loop{
-	PixelSearch, x, y, 0, 0, 500, 500, 0xFFECBD, 3, Fast RGB
-	if (ErrorLevel = 1){
-			Send {Enter}
-			Sleep 200
-			Send {Enter}
-			Sleep 200
+		Click WheelDown
+		Sleep 1000
+		activateSettingsClass()
+		PixelSearch, x, y, 18, 96, 57, 351, 0xA80B04, 1, Fast RGB
+		if (ErrorLevel){
+			MouseGetPos, mX, mY,, 1
+			PixelGetColor, color, %mX%, %mY%, RGB
+			if (color = 0xCCCCCC){
+				Click
+				break
+			}else{
+				Sleep 300
+			}
+		}else{
+			MouseMove, 402, 334
+			return
+			return
+		}
+	}
+	Sleep 300
+	Loop{
+		Sleep 1000
+		activateSettingsClass()
+		PixelSearch, x, y, 57, 33, 395, 229, 0xA80B04, 1, Fast RGB
+		if (ErrorLevel = 1){
+			activateSettings()
+			Click WheelDown
+			Sleep 1000 ;FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCK THIS SLEEP FUCK
 		}else{
 			Sleep 300
 			Send {Enter}
-			Sleep 200
+			Sleep 300
 			MouseMove, %x%, %y%
 			Click
+			Sleep 300
+			MouseMove, 402, 334
+			Sleep 1000
 			break
 		}
 	}
 }
+
+setDefaultVideo(){
+	Loop{
+		Click WheelDown
+		Sleep 1000
+		activateSettingsClass()
+		PixelSearch, x, y, 18, 0, 57, 767, 0xF88300, 1, Fast RGB
+		if (ErrorLevel){
+			MouseGetPos, mX, mY,, 1
+			PixelGetColor, color, %mX%, %mY%, RGB
+			if (color = 0xCCCCCC){
+				Click
+				break
+			}else{
+				Sleep 300
+			}
+		}else{
+			MouseMove, 402, 334
+			return
+			return
+		}
+	}
+	Sleep 300
+	Loop{
+		Sleep 1000
+		activateSettingsClass()
+		PixelSearch, x, y, 57, 33, 395, 229, 0xF88300, 1, Fast RGB
+		if (ErrorLevel = 1){
+			activateSettings()
+			MouseMove, 395, 300
+			Click WheelDown
+			Sleep 1000 ;FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCK THIS SLEEP FUCK
+		}else{
+			Sleep 300
+			Send {Enter}
+			Sleep 300
+			MouseMove, %x%, %y%
+			Click
+			Sleep 300
+			MouseMove, 402, 334
+			Sleep 1000
+			break
+		}
+	}
+}
+
+setDefaultBrowser(){
+	Loop{
+		Click WheelDown
+		Sleep 1000
+		activateSettingsClass()
+		PixelSearch, x, y, 18, 96, 57, 351, 0xDD4E42, 1, Fast RGB
+		if (ErrorLevel){
+			MouseGetPos, mX, mY,, 1
+			PixelGetColor, color, %mX%, %mY%, RGB
+			if (color = 0xCCCCCC){
+				Click
+				break
+			}else{
+				Sleep 300
+			}
+		}else{
+			MouseMove, 402, 334
+			return
+			return
+		}
+	}
+	Sleep 300
+	Loop{
+		Sleep 1000
+		activateSettingsClass()
+		PixelSearch, x, y, 57, 33, 395, 229, 0xDD4E42, 1, Fast RGB
+		if (ErrorLevel = 1){
+			activateSettings()
+			MouseMove, 395, 300
+			Click WheelDown
+			Sleep 1000 ;FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCK THIS SLEEP FUCK
+		}else{
+			Sleep 300
+			MouseMove, %x%, %y%
+			Click
+			Sleep 300
+			MouseMove, 402, 334
+			Sleep 1000
+			break
+		}
+	}
+}
+
 setDefaultApps(){
 	setDefaultMusic()
+	setDefaultPhoto()
+	setDefaultVideo()
+	setDefaultBrowser()
 }
- 
-openSettings()
-goToDefaultApps()
-setDefaultApps()
+
+startSwitch(){
+	openSettings()
+	goToDefaultApps()
+	setDefaultApps()
+}
+
+startSwitch()
+
 ExitApp
 
+^1::
+Pause
 Escape::
 ExitApp
