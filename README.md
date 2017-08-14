@@ -2,9 +2,9 @@
 Ok, This one is pretty easy.
 
 1) Win + r
-2) type "powershell" and click enter
-3) type "Set-ExecutionPolicy RemoteSigned" and click enter
-4) type "A" and press enter
+2) Type "powershell" and click enter
+3) Type "Set-ExecutionPolicy RemoteSigned" and click enter
+4) Type "A" and press enter
 5) Close powershell window
 
 And then all you really have to do is run the formatDoer.ps1 as admin.
