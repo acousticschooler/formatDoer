@@ -1,4 +1,6 @@
-﻿$uacPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"
+﻿#Enter before running--------Set-ExecutionPolicy RemoteSigned
+#KMSpico torrent magnet------magnet:?xt=urn:btih:E954AB6B5A93071E8F1A41C509E77F35A50B1B11&dn=KMSpico_v10.2.0&tr=udp%3a%2f%2ftracker.openbittorrent.com%3a80%2fannounce&tr=udp%3a%2f%2ftracker.publicbt.com%3a80%2fannounce&tr=udp%3a%2f%2finferno.demonoid.ooo%3a3392%2fannounce&tr=http%3a%2f%2fmgtracker.org%3a2710%2fannounce&tr=udp%3a%2f%2f9.rarbg.com%3a2710%2fannounce&tr=udp%3a%2f%2fglotorrents.pw%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.blackunicorn.xyz%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.ccc.de%3a80%2fannounce
+$uacPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"
 Write-Host Disabling UAC
 Set-ItemProperty -Path $uacPath -Name "EnableLUA" -Value 0
 Write-Host Done
@@ -119,7 +121,8 @@ Write-Host Turn display off never
 powercfg /setdcvalueindex $hpPowerScheme $displaySubID $turnOffDisplayAfter 0
 Write-Host Done
 
-Write-Host Testing unpinning defaults from start menu
+Write-Host Unpinning defaults from start menu
+
 function Pin-App { param(
 [string]$appname,
 [switch]$unpin
@@ -137,25 +140,37 @@ Write-Error "Error Pinning/Unpinning App! (App-Name correct?)"
 }
 }
 
+Write-Host Step 1 Disable Start Pane Suggestions
+$turnOffStartSuggestionsPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+$turnOffStartSuggestionsName = "SystemPaneSuggestionsEnabled"
+Set-ItemProperty -Path $turnOffStartSuggestionsPath -Name $turnOffStartSuggestionsName -value 0
+Write-Host Step 1 done
+
+Write-Host Step 2 Actually Unpin
 Pin-App "Mail" -unpin
 Pin-App "Store" -unpin
-Pin-App "Cortana" -unpin
 Pin-App "Calendar" -unpin
 Pin-App "Microsoft Edge" -unpin
 Pin-App "Photos" -unpin
 Pin-App "Cortana" -unpin
 Pin-App "Weather" -unpin
-Pin-App "Twitter" -unpin
 Pin-App "Store" -unpin
-Pin-App "Xbox" -unpin
 Pin-App "Groove Music" -unpin
-Pin-App "Money" -unpin
 Pin-App "Movies & TV" -unpin
 Pin-App "Microsoft Solitaire Collection" -unpin
-Pin-App "Minecraft: Windows 10 Edition" -unpin
 Pin-App "Get Office" -unpin
 Pin-App "Onenote" -unpin
 Pin-App "News" -unpin
+Pin-App "Plex" -unpin
+Pin-App "SketchBook" -unpin
+Pin-App "Maps" -unpin
+Pin-App "Calculator" -unpin
+Pin-App "Keeper" -unpin
+Pin-App "Skype" -unpin
+Pin-App "Minecraft" -unpin
+Pin-App "Bubble Witch 3 Saga" -unpin
+Pin-App "Candy Crush Soda Saga" -unpin
+Write-Host Step 2 Done and all the way done unpinning
 
 Write-Host Disabling all bloatware services
 Set-Service AJRouter -StartupType Disabled
@@ -219,6 +234,37 @@ Set-Service XboxNetApiSvc -StartupType Disabled
 Set-Service WMPNetworkSvc -StartupType Disabled
 Write-Host Done
 
+Write-Host Lets remove all those pesky Windows Apps
+get-appxpackage messaging | remove-appxpackage
+get-appxpackage sway | remove-appxpackage
+get-appxpackage commsphone | remove-appxpackage
+get-appxpackage windowsphone remove-appxpackage
+get-appxpackage phone | remove-appxpackage
+get-appxpackage communicationsapps | remove-appxpackage
+get-appxpackage people | remove-appxpackage
+get-appxpackage zunemusic | remove-appxpackage
+get-appxpackage zunevideo | remove-appxpackage
+get-appxpackage zune | remove-appxpackage
+get-appxpackage bingfinance | remove-appxpackage
+get-appxpackage bingnews | remove-appxpackage
+get-appxpackage bingsports | remove-appxpackage
+get-appxpackage bingweather | remove-appxpackage
+get-appxpackage bing | remove-appxpackage
+get-appxpackage onenote | remove-appxpackage
+get-appxpackage maps | remove-appxpackage
+get-appxpackage solitaire | remove-appxpackage
+get-appxpackage officehub | remove-appxpackage
+get-appxpackage skypeapp | remove-appxpackage
+get-appxpackage getstarted | remove-appxpackage
+get-appxpackage 3dbuilder | remove-appxpackage
+Get-AppxPackage drawboardpdf | Remove-AppxPackage
+Get-AppxPackage freshpaint | Remove-AppxPackage
+Get-AppxPackage nytcrossword | Remove-AppxPackage
+Get-AppxPackage microsoft.xboxapp | Remove-AppxPackage
+Get-AppxPackage SurfaceHub | Remove-AppxPackage
+Get-AppxPackage flipboard | Remove-AppxPackage
+Write-Host Done
+
 Write-Host MarkCs Mouse Fix Win 10 100%
 $mouseBinary = 'HKCU:Control Panel\Mouse'
 $generalMouse = 'Registry::HKEY_USERS\.DEFAULT\Control Panel\Mouse'
@@ -235,5 +281,17 @@ Write-Host Done, lets do the mouse threshold 2
 Set-ItemProperty -Path $generalMouse -Name MouseThreshold2 -value 0
 Write-Host Done
 
-Write-Host Finished the whole thing
-pause
+Write-Host Lets make it so we can see ALL hidden folders
+$hiddenFolderPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+$hiddenFolderName = "Hidden"
+Set-ItemProperty -Path $hiddenFolderPath -Name $hiddenFolderName -value 1
+Write-Host Done
+
+Write-Host Finished the whole thing, restarting in 20 seconds unless PowerShell closed! *NOTE: REQUIRED RESTART FOR CRUCIAL CHANGES TO TAKE EFFECT*
+foreach($element in 1..20){
+
+  Write-Host –NoNewLine  "${element} "
+
+  Start-Sleep –Seconds 1
+}
+Restart-Computer
